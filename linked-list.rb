@@ -99,6 +99,16 @@ class LinkedList
     str += 'nil'
     str
   end
+
+  def insert_at(value, index)
+    new_node = Node.new value
+    new_node.next_node = at(index)
+    at(index - 1).next_node = new_node
+  end
+
+  def remove_at(index)
+    at(index - 1).next_node = at(index + 1)
+  end
 end
 linked_list = LinkedList.new
 linked_list.append 8
@@ -107,6 +117,11 @@ linked_list.append 6
 linked_list.append 2
 linked_list.append 3
 linked_list.prepend 9
+linked_list.insert_at(4, 2)
 puts linked_list
+puts linked_list.find(4)
 puts linked_list.size
 puts linked_list.at(0)
+puts linked_list.at(5)
+linked_list.remove_at 3
+puts linked_list
